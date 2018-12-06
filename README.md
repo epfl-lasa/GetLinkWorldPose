@@ -1,6 +1,48 @@
 ## GetLinkWorldPose
 Gazebo Plugin to get any 6D frame of a robot link and write it to a yarp-port, used with iCub.
 
+### Compilation and build
+Clone the repository
+```bash
+$ git clone https://github.com/epfl-lasa/biped-walking-controller.git
+```
+
+To define the link you want to read from Gazebo, define in the ``GetWorldLinkPose.cc`` file:
+```c++
+    // get the link name
+    std::string linkName = "";
+
+    if(this->m_defaultLink =="")
+    {
+        linkName = rf.find("link").asString();
+        if(linkName == ""){
+            linkName = "root_link";
+        }
+    }
+    else{
+        linkName = rf.find("link").asString();
+        if(linkName == ""){
+            linkName = this->m_defaultLink;
+        }
+    }
+```
+Then compile:
+```bash
+$ cd ~/biped-walking-controller
+$ mkdir build && cd build
+$ cmake .. && make
+```
+This will create a the shared object ``libPlugin_LinkWorldPose.so`` in the ``./build`` folder.
+
+### Usage
+To actually use the plugin, you should dd this plugin in icub sdf model for instance the one in icub-gazebo folder as follows:
+```xml
+<plugin name='get_link_world_pose' filename='/where/you/have/your/libPlugin_LinkWorldPose.so'>
+  <robotNamefromConfigFile>model://icub/conf/gazebo_icub_robotname.ini</robotNamefromConfigFile>>
+</plugin>
+```
+
+Then in your C++ code, you can connect to the yarp port, as follows:
 ```c++
 // ====== Opening the port for Root-Link in World (CoM) Pose reader w/robotName ====== //
 std::string RootlinkPose_portName="/";
