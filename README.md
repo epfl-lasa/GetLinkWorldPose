@@ -28,7 +28,7 @@ To define the link you want to read from Gazebo, define in the ``GetWorldLinkPos
 ```
 Then compile:
 ```bash
-$ cd ~/biped-walking-controller
+$ cd ~/GetLinkWorldPose
 $ mkdir build && cd build
 $ cmake .. && make
 ```
