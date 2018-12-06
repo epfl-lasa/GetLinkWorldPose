@@ -4,7 +4,7 @@ Gazebo Plugin to get any 6D frame of a robot link and write it to a yarp-port, u
 ### Compilation and build
 Clone the repository
 ```bash
-$ git clone https://github.com/epfl-lasa/biped-walking-controller.git
+$ git clone https://github.com/epfl-lasa/GetLinkWorldPose.git
 ```
 
 To define the link you want to read from Gazebo, define in the ``GetWorldLinkPose.cc`` file:
