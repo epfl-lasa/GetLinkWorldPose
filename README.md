@@ -55,4 +55,10 @@ if(!Network::connect(RootlinkPose_portName.c_str(), RootlinkPose_port_In.getName
     printf(" Unable to connect to the KeyboardCmdsReaderModule port");
     return false;
 }
+
+    RootlinkPose_values = RootlinkPose_port_In.read(); 
+    Rootlink_measurements.resize(RootlinkPose_values->size());    
+    for (int i= 0;i < RootlinkPose_values->size(); i++){
+        Rootlink_measurements(i) = RootlinkPose_values->get(i).asDouble();            
+    }
 ```
