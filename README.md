@@ -45,6 +45,10 @@ To actually use the plugin, you should dd this plugin in icub sdf model for inst
 Then in your C++ code, you can connect to the yarp port, as follows:
 ```c++
 // ====== Opening the port for Root-Link in World (CoM) Pose reader w/robotName ====== //
+Bottle              *RootlinkPose_values;
+BufferedPort<Bottle> RootlinkPose_port_In;
+Eigen::VectorXd      Rootlink_measurements;
+
 std::string RootlinkPose_portName="/";
 RootlinkPose_portName += robotName_;
 RootlinkPose_portName += "/get_root_link_WorldPose:o";
